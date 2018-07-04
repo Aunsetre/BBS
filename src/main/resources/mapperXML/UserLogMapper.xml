@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aunsetre.mapper.UserLogMapper" >
+  <resultMap id="BaseResultMap" type="com.aunsetre.pojo.UserLog" >
+    <id column="lid" property="lid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="SMALLINT" />
+    <result column="loginTime" property="logintime" jdbcType="TIMESTAMP" />
+    <result column="loginIP" property="loginip" jdbcType="VARCHAR" />
+    <result column="offLine" property="offline" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userlog
+    where lid = #{lid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aunsetre.pojo.UserLog" >
+    insert into userlog (lid, userId, loginTime, 
+      loginIP, offLine)
+    values (#{lid,jdbcType=INTEGER}, #{userid,jdbcType=SMALLINT}, #{logintime,jdbcType=TIMESTAMP}, 
+      #{loginip,jdbcType=VARCHAR}, #{offline,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.aunsetre.pojo.UserLog" >
+    update userlog
+    set userId = #{userid,jdbcType=SMALLINT},
+      loginTime = #{logintime,jdbcType=TIMESTAMP},
+      loginIP = #{loginip,jdbcType=VARCHAR},
+      offLine = #{offline,jdbcType=TIMESTAMP}
+    where lid = #{lid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select lid, userId, loginTime, loginIP, offLine
+    from userlog
+    where lid = #{lid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select lid, userId, loginTime, loginIP, offLine
+    from userlog
+  </select>
+</mapper>

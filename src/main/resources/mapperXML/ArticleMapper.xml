@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aunsetre.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.aunsetre.pojo.Article" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="releaseTime" property="releasetime" jdbcType="TIMESTAMP" />
+    <result column="likes" property="likes" jdbcType="INTEGER" />
+    <result column="aTid" property="atid" jdbcType="SMALLINT" />
+    <result column="authorid" property="authorid" jdbcType="SMALLINT" />
+    <result column="clickRate" property="clickrate" jdbcType="INTEGER" />
+    <result column="context" property="context" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from article
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aunsetre.pojo.Article" >
+    insert into article (aid, title, releaseTime, 
+      likes, aTid, authorid, 
+      clickRate, context)
+    values (#{aid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{releasetime,jdbcType=TIMESTAMP}, 
+      #{likes,jdbcType=INTEGER}, #{atid,jdbcType=SMALLINT}, #{authorid,jdbcType=SMALLINT}, 
+      #{clickrate,jdbcType=INTEGER}, #{context,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.aunsetre.pojo.Article" >
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      releaseTime = #{releasetime,jdbcType=TIMESTAMP},
+      likes = #{likes,jdbcType=INTEGER},
+      aTid = #{atid,jdbcType=SMALLINT},
+      authorid = #{authorid,jdbcType=SMALLINT},
+      clickRate = #{clickrate,jdbcType=INTEGER},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select aid, title, releaseTime, likes, aTid, authorid, clickRate, context
+    from article
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select aid, title, releaseTime, likes, aTid, authorid, clickRate, context
+    from article
+  </select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aunsetre.mapper.LikesMapper" >
+  <resultMap id="BaseResultMap" type="com.aunsetre.pojo.Likes" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="articleid" property="articleid" jdbcType="INTEGER" />
+    <result column="authorid" property="authorid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="likes" property="likes" jdbcType="INTEGER" />
+    <result column="clickTime" property="clicktime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from likes
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aunsetre.pojo.Likes" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into likes (articleid, authorid, uid, 
+      likes, clickTime)
+    values (#{articleid,jdbcType=INTEGER}, #{authorid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{likes,jdbcType=INTEGER}, #{clicktime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.aunsetre.pojo.Likes" >
+    update likes
+    set articleid = #{articleid,jdbcType=INTEGER},
+      authorid = #{authorid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      likes = #{likes,jdbcType=INTEGER},
+      clickTime = #{clicktime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, articleid, authorid, uid, likes, clickTime
+    from likes
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, articleid, authorid, uid, likes, clickTime
+    from likes
+  </select>
+</mapper>

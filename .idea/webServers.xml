@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4f0aa18e-9476-4ba9-980d-221d72cf675b" name="Aliyun" url="http://120.79.95.169">
+        <fileTransfer host="120.79.95.169" port="22" privateKey="C:\Users\Aunse\.ssh\Aliyun_Key.ppk" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
